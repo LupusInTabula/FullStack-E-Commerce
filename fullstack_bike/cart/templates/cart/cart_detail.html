@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+</head>
+<body>
+<h2>Your Cart</h2>
+{% if cart.cartitem_set.all %}
+    <ul>
+        {% for item in cart.cartitem_set.all %}
+            <li>
+                {{ item.product.name }} ({{ item.quantity }})
+                <a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
+<a href="{% url 'store' %}">Continue Shopping</a>
+</body>
+</html>
