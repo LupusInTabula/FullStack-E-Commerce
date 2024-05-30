@@ -11,7 +11,7 @@ def add_to_cart(request, product_id):
     if not created:
         cart_item.quantity += 1
         cart_item.save()
-    return redirect('cart:cart_detail')
+    return redirect('store:store')
 
 @login_required
 def cart_detail(request):

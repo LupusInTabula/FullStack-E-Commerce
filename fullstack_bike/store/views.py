@@ -4,7 +4,6 @@ from django.contrib import messages
 from .models import Store
 
 
-# Create your views here.
 def store(request):
     stores = Store.objects.all()
     return render(request, 'store/bikestore.html', {'stores': stores})
