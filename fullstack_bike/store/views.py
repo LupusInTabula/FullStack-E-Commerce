@@ -6,7 +6,7 @@ from .models import Store
 
 def store(request):
     stores = Store.objects.all().order_by('name')
-    return render(request, 'store/MainStore.html', {'stores': stores})
+    return render(request, 'store/index.html', {'stores': stores})
 
 
 def register(request):

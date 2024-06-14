@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-n=(e65=w!512zqo%!&ba07+$f500=fq1)ul9b&zfbis2+&+$xj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://lupusintabulaecommerce.netlify.app']
+ALLOWED_HOSTS = ['https://lupusintabulaecommerce.netlify.app', '127.0.0.1']
 
 
 # Application definition
