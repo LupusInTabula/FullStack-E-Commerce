@@ -1,10 +1,11 @@
 [build]
 publish = "staticfiles"
-command = "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn fullstack_bike.wsgi --log-file -"
+command = "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate && gunicorn fullstack_bike.wsgi --log-file -"
 
 [build.environment]
 DATABASE_URL = "postgres://username:password@hostname:port/dbname"
 DEBUG = "False"
+SECRET_KEY = "your-secret-key"
 
 [[redirects]]
 from = "/*"
