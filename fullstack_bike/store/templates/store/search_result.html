@@ -1,0 +1,37 @@
+{% extends 'store/common.html' %}
+
+{% block content %}
+
+    <h1>Search Results</h1>
+    <div class="mainContent">
+        {% if storesearch %}
+            {% for store in storesearch %}
+                <div class="Object">
+                    <div class="Image">
+                        <img src="{{ store.image.url }}" alt="{{ store.name }}">
+                    </div>
+                    <div class="name">
+                        <p>{{ store.name }}</p>
+                    </div>
+                    <div class="price">
+                        <p>${{ store.price }}</p>
+                    </div>
+                    <div class="description">
+                        <p>{{ store.description }}</p>
+                    </div>
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'cart:add_to_cart' store.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    {% else %}
+                        <p><a href="{% url 'store:login' %}">Login</a> to add to cart</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

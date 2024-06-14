@@ -1,20 +1,35 @@
 {% extends 'store/common.html' %}
 
 {% block content %}
-
-<h2>Your Cart</h2>
-{% if cart.cartitem_set.all %}
-    <ul>
-        {% for item in cart.cartitem_set.all %}
-            <li>
-                {{ item.product.name }} ({{ item.quantity }})
-                <a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Your cart is empty.</p>
-{% endif %}
-<a href="{% url 'store:store' %}">Continue Shopping</a>
-
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="title">
+                    <h2>Your Cart</h2>
+                </div>
+                <div class="orderBody">
+                    {% if cart.cartitem_set.all %}
+                        <ul>{% for item in cart.cartitem_set.all %}
+                            <li>
+                                {{ item.product.name }} ({{ item.quantity }})
+                                <a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Your cart is empty.</p>
+                    {% endif %}
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-primary">
+                        <a href="{% url 'store:store' %}">Continue Shopping</a>
+                    </button>
+                    <form action="{% url 'cart:confirm_order' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Confirm Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

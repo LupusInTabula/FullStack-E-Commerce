@@ -20,6 +20,24 @@ header {
     background-color: #00192D;
 }
 
+.TopHeader{
+    width: 100%;
+    background-color: #00192D;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.homeButton{
+    margin: 5px;
+    height: auto;
+    width: auto;
+    border-radius: 10px;
+}
+
+.homeButton a {
+    text-decoration: none;
+}
+
 .searchBar {
     align-content: center;
     float: left;
@@ -62,6 +80,7 @@ nav {
     justify-content: center;
     background-color: white;
 }
+
 /* ----------------------- MAIN ---------------------------- */
 main {
     display: grid;
@@ -116,11 +135,11 @@ img {
     margin: 3px;
 }
 
-.cartSection h1{
+.cartSection h1 {
     font-size: 2em;
 }
 
-.cartSection p{
+.cartSection p {
     font-size: 1em;
 }
 
@@ -197,4 +216,52 @@ img {
     }
 }
 
+/* -------------------- UTENTE ------------------------ */
 
+.ImageUtente {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ImageUtente img{
+    max-width: 100%;
+    max-height: 35vh;
+}
+
+.container input{
+    width: 100%;
+}
+
+.alreadyLogin{
+    text-decoration: none;
+    color: white;
+}
+
+.alreadyLogin:hover{
+    text-decoration: none;
+    color: white;
+}
+
+/* ---------------------- ORDER ----------------------- */
+.row{
+    margin: 5px;
+    border: 5px solid #00192D;
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.buttons a{
+    text-decoration: none;
+    color: white;
+}
+
+.buttons a:hover{
+    text-decoration: none;
+    color: white;
+}

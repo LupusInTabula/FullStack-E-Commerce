@@ -1,0 +1,75 @@
+{% extends 'store/common.html' %}
+
+{% block content %}
+
+    {% load static %}
+    <nav>
+        <h1>Welcome {{ user.username }}</h1>
+    </nav>
+    <main>
+        <div class="cartSection">
+            <div class="uBottone">
+                <button class="cartButton">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'cart:cart_detail' %}">
+                            <img src="{% static 'store/CartLogo.png' %}" alt="CartLogo">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'store:login' %}">
+                            <img src="{% static 'store/CartLogo.png' %}" alt="CartLogo">
+                        </a>
+                    {% endif %}
+                </button>
+            </div>
+            <div class="listaProduct">
+                <h1>Your Cart Items</h1>
+                {% if user.is_authenticated %}
+                    {% if user.cart.cartitem_set.exists %}
+                        <ul>
+                            {% for item in user.cart.cartitem_set.all %}
+                                <li>
+                                    {{ item.product.name }} ({{ item.quantity }})
+                                    <a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Your cart is empty.</p>
+                    {% endif %}
+                {% else %}
+                    <p>Please <a href="{% url 'store:login' %}">Login</a> to see your cart.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="mainContent">
+            {% for store in stores %}
+                <div class="Object">
+                    <div class="Image">
+                        <img src="{{ store.image.url }}" alt="{{ store.name }}">
+                    </div>
+                    <div class="name">
+                        <p>{{ store.name }}</p>
+                    </div>
+                    <div class="price">
+                        <p>${{ store.price }}</p>
+                    </div>
+                    <div class="description">
+                        <p>{{ store.description }}</p>
+                    </div>
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'cart:add_to_cart' store.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    {% else %}
+                        <p><a href="{% url 'store:login' %}">Login</a> to add to cart</p>
+                    {% endif %}
+                    <div class="stock">
+                        <p>Stock: {{ store.stock }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+{% endblock %}
