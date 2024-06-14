@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-n=(e65=w!512zqo%!&ba07+$f500=fq1)ul9b&zfbis2+&+$xj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['lupusintabulafull-stack-e-commerce-six.vercel.app', 'http://127.0.0.1:8000/store/']
 
 
 # Application definition
