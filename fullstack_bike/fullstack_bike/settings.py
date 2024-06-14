@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-n=(e65=w!512zqo%!&ba07+$f500=fq1)ul9b&zfbis2+&+$xj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['lupusintabulafull-stack-e-commerce-six.vercel.app', 'http://127.0.0.1:8000/store/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -93,11 +93,11 @@ WSGI_APPLICATION = 'fullstack_bike.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'StoreSQL',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'Matteo2806',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': 'OapQRQvlFsZgUYEVzSGGqruACiQwPwvB',
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': '44818',
     }
 }
 

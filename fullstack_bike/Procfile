@@ -1,1 +1,1 @@
-web: gunicorn fullstack_bike.wsgi
+web: gunicorn fullstack_bike.wsgi --log-file -
