@@ -1,0 +1,1 @@
+web: gunicorn fullstack_bike.wsgi
