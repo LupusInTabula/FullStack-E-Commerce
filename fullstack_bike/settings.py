@@ -16,6 +16,7 @@ import os
 from django.contrib import staticfiles
 from django.templatetags import static
 from django.contrib.messages import constants as message_constants
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,15 +92,23 @@ WSGI_APPLICATION = 'fullstack_bike.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'railway',
+#        'USER': 'postgres',
+#        'PASSWORD': 'OapQRQvlFsZgUYEVzSGGqruACiQwPwvB',
+#        'HOST': 'viaduct.proxy.rlwy.net',
+#        'PORT': '44818',
+#    }
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'OapQRQvlFsZgUYEVzSGGqruACiQwPwvB',
-        'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '44818',
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://postgres:OapQRQvlFsZgUYEVzSGGqruACiQwPwvB@viaduct.proxy.rlwy.net:44818/railway',
+        conn_max_age=600
+    )
 }
 
 
@@ -141,9 +150,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
