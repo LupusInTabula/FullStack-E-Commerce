@@ -1,4 +1,5 @@
 Libraries: Pillow, Psycopg2, Bootstrap, JQuery, Whitenoise, Gunicorn, Unicorn, Dj-database-url
+Framework: Django / Database: PostgreSQL hostato su Railway
 
 Il sito include funzionalità di gestione di login e singin dell'utente, gestione del carello e dell'ordine:
 l'utente può registrarsi al sito attraverlo l'apposito bottone in alto a destra, dopo viene rendirizzato alla pagina
