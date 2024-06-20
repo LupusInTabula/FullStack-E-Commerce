@@ -105,8 +105,7 @@ WSGI_APPLICATION = 'fullstack_bike.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:OapQRQvlFsZgUYEVzSGGqruACiQwPwvB@viaduct.proxy.rlwy.net:44818/railway',
+        default=os.getenv('DATABASE_URL'),
         conn_max_age=600
     )
 }
